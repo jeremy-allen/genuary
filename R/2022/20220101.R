@@ -1,4 +1,5 @@
 library(tidyverse)
+library(ggfx)
 
 dark <- "#212529"
 light <- "#DEE2E6"
@@ -26,7 +27,11 @@ my_theme <- theme(
 dat %>%
  ggplot(aes(x = x, y = y, color = z)) +
  geom_line(size = .2, alpha = 1) +
- geom_point(aes(x = x, y = y), size = .055, color = spot, alpha = .5) +
+  with_blur(
+    geom_point(aes(x = x, y = y), size = 3, color = spot, alpha = .15),
+    sigma = .8
+  ) +
+ geom_point(aes(x = x, y = y), size = .15, color = spot, alpha = 1) +
  scale_color_identity() +
  labs(
   title = "Ten Thousand Line Lights",
