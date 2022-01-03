@@ -24,9 +24,9 @@ dark <- "#291586"
 
 my_theme <- theme(
  text = element_text(family = "dosis-r", color = accent),
- plot.title = element_text(size = rel(2.5)),
- plot.subtitle = element_text(size = rel(1.5), margin = margin(5, 1, 15, 1, "pt")),
- plot.caption = element_text(size = rel(1)),
+ plot.title = element_text(size = rel(10)),
+ plot.subtitle = element_text(size = rel(8), margin = margin(5, 1, 15, 1, "pt")),
+ plot.caption = element_text(size = rel(5)),
  plot.margin = margin(2, 2, 2, 2, "cm"),
  panel.background = element_rect(fill = dark, color = accent),
  panel.grid = element_blank(),
@@ -42,6 +42,13 @@ dither(img, scale = 100, target_palette = tp) +
   ) +
  my_theme
 
-# Original
-dither(img, scale = 100, original = TRUE) +
- labs(caption="Original")
+ggsave(
+  "20220102_portrait_dither.png",
+  device = "png",
+  path = here("output"),
+  width = 8,
+  height = 8,
+  units = "in",
+  dpi = 600,
+  scale = 1
+)
